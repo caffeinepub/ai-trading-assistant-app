@@ -1,0 +1,209 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "TradeIQ Trading App Frontend - Market Dashboard, Watchlist, Portfolio & AI Assistant",
+  "requirements": [
+    {
+      "id": "REQ-2",
+      "summary": "Build Market Dashboard page with daily briefing and macro events calendar",
+      "acceptanceCriteria": [
+        "Dashboard shows a daily briefing card with overnight move summaries for at least 3 markets",
+        "A macro events section lists upcoming events with expected vs actual deviation indicators",
+        "The briefing content is loaded from the backend",
+        "Dashboard is the default landing view of the app"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/Dashboard.tsx",
+          "operation": "create",
+          "description": "Create Market Dashboard page component that fetches and displays the daily market briefing from backend (getLatestMarketBriefing), shows simulated overnight moves for S&P 500, Crypto, and Nasdaq-100 with percentage changes, and includes a macro events calendar panel listing upcoming events (CPI, earnings reports) with deviation status indicators. Use shadcn/ui Card components for briefing and events sections. Include the dashboard hero banner image at frontend/public/assets/generated/dashboard-hero.dim_1200x300.png as a header visual."
+        },
+        {
+          "path": "frontend/src/components/MarketBriefingCard.tsx",
+          "operation": "create",
+          "description": "Create a card component that displays the daily market briefing content loaded from the backend. Show market summaries in a structured format with highlight boxes for each major market (S&P 500, Crypto, Nasdaq-100). Use dark terminal styling with green/red color coding for gains/losses."
+        },
+        {
+          "path": "frontend/src/components/MacroEventsPanel.tsx",
+          "operation": "create",
+          "description": "Create a panel component that lists simulated upcoming macro events (CPI releases, Fed meetings, earnings reports) with columns for event name, date, expected value, actual value, and deviation status. Use amber highlighting when deviation exceeds threshold. Use shadcn/ui Table or Card components with terminal-style grid lines."
+        },
+        {
+          "path": "frontend/src/utils/mockMarketData.ts",
+          "operation": "create",
+          "description": "Create utility module providing simulated market data including overnight moves for major indices, mock macro events with expected/actual deviations, and helper functions to generate randomized but realistic market movements. This ensures no external API calls per constraints."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Build Watchlist page with technical indicators, alerts, and sentiment badges",
+      "acceptanceCriteria": [
+        "Watchlist displays asset name, simulated current price, RSI value, and a trend direction indicator",
+        "Assets with RSI > 70 or RSI < 30 are highlighted with a visual alert badge",
+        "Each asset shows a sentiment badge (Bullish / Neutral / Bearish)",
+        "Users can add and remove assets from the watchlist",
+        "Watchlist state is persisted to the backend"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/Watchlist.tsx",
+          "operation": "create",
+          "description": "Create Watchlist page that fetches watchlist items from backend (getWatchlist), displays each asset in a table/card grid with simulated current price, RSI value from mockMarketData, trend arrow indicator (up/down/neutral), and sentiment badge. Include Add Asset button that calls addToWatchlist backend method. Highlight assets with RSI > 70 (overbought) or RSI < 30 (oversold) with amber/red alert badges. Each row has a remove button calling removeFromWatchlist."
+        },
+        {
+          "path": "frontend/src/components/WatchlistAssetRow.tsx",
+          "operation": "create",
+          "description": "Create a row/card component for a single watchlist asset displaying ticker, simulated current price, RSI gauge or numeric value, trend direction icon (arrow up/down), sentiment badge (Bullish in green, Neutral in gray, Bearish in red), and alert indicator when RSI triggers threshold. Include remove button. Use monospaced font for numeric values."
+        },
+        {
+          "path": "frontend/src/components/AddAssetDialog.tsx",
+          "operation": "create",
+          "description": "Create a dialog component using shadcn/ui Dialog that allows users to add a new asset to the watchlist. Includes input fields for ticker symbol and optional description. On submit, calls addToWatchlist backend method and refreshes the watchlist."
+        },
+        {
+          "path": "frontend/src/utils/mockMarketData.ts",
+          "operation": "modify",
+          "description": "Extend mockMarketData utility to include functions that generate simulated RSI values (0-100), trend indicators, and sentiment scores for given tickers. Ensure RSI values occasionally exceed 70 or fall below 30 to trigger alerts."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Build Portfolio Overview page with P&L, Health Score, and drawdown alerts",
+      "acceptanceCriteria": [
+        "Each position row displays: asset name, entry price, current price, P&L percentage, and stop-loss distance",
+        "A portfolio Health Score gauge is shown at the top of the page",
+        "Positions within 5% of their stop-loss are highlighted in amber/red",
+        "A drawdown alert banner appears when simulated sector drawdown exceeds 10%, listing three exit/hedge options",
+        "Total portfolio delta is displayed as a summary metric"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/Portfolio.tsx",
+          "operation": "create",
+          "description": "Create Portfolio Overview page that fetches all positions from backend (getAllPositions), calculates P&L using simulated current prices from mockMarketData, displays total portfolio delta, and shows a Health Score gauge (0-100 computed from aggregate risk factors). Render a table of positions with entry price, current price, P&L percentage (green for gains, red for losses), and stop-loss distance. Highlight rows in amber/red when current price is within 5% of stop-loss. If any simulated sector drawdown exceeds 10%, display a DrawdownAlertBanner component."
+        },
+        {
+          "path": "frontend/src/components/PortfolioSummary.tsx",
+          "operation": "create",
+          "description": "Create a summary component showing portfolio Health Score as a radial gauge or progress bar (0-100 scale, color-coded green/amber/red), total portfolio delta with large numeric display, and key metrics (total positions, total P&L). Use monospaced font for numbers and terminal styling."
+        },
+        {
+          "path": "frontend/src/components/PositionRow.tsx",
+          "operation": "create",
+          "description": "Create a table row component for a single position displaying ticker, entry price, simulated current price, quantity, P&L percentage, and stop-loss distance percentage. Apply amber or red background highlight when stop-loss distance is ≤ 5%. Include a remove/edit button calling removePosition or addOrUpdatePosition backend methods."
+        },
+        {
+          "path": "frontend/src/components/DrawdownAlertBanner.tsx",
+          "operation": "create",
+          "description": "Create an alert banner component that appears when a simulated sector drawdown exceeds 10%. Display the affected sector, drawdown percentage, and three suggested exit/hedge scenarios (e.g., 'Exit 50% of position', 'Add protective puts', 'Rebalance to defensive sector') with brief descriptions. Use crimson/amber styling to draw attention."
+        },
+        {
+          "path": "frontend/src/utils/portfolioCalculations.ts",
+          "operation": "create",
+          "description": "Create utility module with functions to calculate portfolio Health Score (based on aggregate stop-loss distances, position concentration, simulated volatility), total P&L, portfolio delta, and sector-level drawdowns. Use simulated current prices from mockMarketData."
+        },
+        {
+          "path": "frontend/src/utils/mockMarketData.ts",
+          "operation": "modify",
+          "description": "Extend mockMarketData to provide simulated current prices for tickers and sector-level drawdown flags (randomly trigger ≥10% drawdown events for demo purposes)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Build AI Trading Assistant with three modes: Daily Strategist, Risk & Portfolio Guard, Alpha Hunter",
+      "acceptanceCriteria": [
+        "Assistant panel has three clearly labeled mode tabs: Daily Strategist, Risk & Portfolio Guard, Alpha Hunter",
+        "Users can type a query and receive a formatted response in the active mode",
+        "Daily Strategist responses include a trade setup with Entry, Stop-Loss, and Take-Profit fields",
+        "Risk & Portfolio Guard mode shows a correlation risk summary when a trade is proposed",
+        "Alpha Hunter mode surfaces 3 simulated breakout setups with full trade parameters",
+        "Assistant conversation history is displayed in a scrollable chat-style interface",
+        "Mode switching clears or contextually reframes the conversation"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/AIAssistant.tsx",
+          "operation": "create",
+          "description": "Create AI Trading Assistant page with three mode tabs (Daily Strategist, Risk & Portfolio Guard, Alpha Hunter). Display a chat-style conversation history and an input field for user queries. On submit, route the query to the appropriate rule-based response generator in aiAssistantLogic utility. Render responses with formatted trade setups (Entry, Stop-Loss, Take-Profit fields), correlation risk summaries, or breakout scenarios depending on active mode. Mode switching resets conversation context."
+        },
+        {
+          "path": "frontend/src/components/AssistantModeSelector.tsx",
+          "operation": "create",
+          "description": "Create a tab component using shadcn/ui Tabs to switch between Daily Strategist, Risk & Portfolio Guard, and Alpha Hunter modes. Highlight the active mode tab. On mode change, emit event to parent to clear or reframe conversation."
+        },
+        {
+          "path": "frontend/src/components/AssistantChatHistory.tsx",
+          "operation": "create",
+          "description": "Create a scrollable chat history component that displays user queries and assistant responses in alternating message bubbles. Format assistant responses to highlight trade parameters (Entry, Stop-Loss, Take-Profit) and use color coding (green for Entry, amber for Stop-Loss, green for Take-Profit). Use terminal-style monospaced font for numeric values."
+        },
+        {
+          "path": "frontend/src/components/TradeSetupCard.tsx",
+          "operation": "create",
+          "description": "Create a card component to display a trade setup with clearly labeled Entry, Stop-Loss, and Take-Profit levels, along with risk/reward ratio and position sizing suggestion. Use terminal styling with grid lines and color-coded fields."
+        },
+        {
+          "path": "frontend/src/utils/aiAssistantLogic.ts",
+          "operation": "create",
+          "description": "Create utility module providing rule-based response generation for three assistant modes. Daily Strategist: parses user query keywords, retrieves morning briefing context, and returns trade setup recommendations with Entry/Stop-Loss/Take-Profit levels. Risk & Portfolio Guard: fetches current positions (getAllPositions), analyzes proposed trade for sector/asset correlation, and returns risk summary. Alpha Hunter: returns 3 pre-scripted high-probability breakout setups (Bull Flag, Double Bottom) with full trade parameters. All responses use simulated data and pre-defined templates—no external LLM API calls per constraints."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Apply dark terminal visual design with persistent navigation and card-based layout",
+      "acceptanceCriteria": [
+        "All pages share a consistent dark charcoal background",
+        "Gain values are displayed in green, loss values in red/crimson, warnings in amber",
+        "Numeric data uses a monospaced or semi-monospaced font",
+        "A persistent left navigation bar provides access to Dashboard, Watchlist, Portfolio, and AI Assistant sections",
+        "Cards and panels have subtle borders and grid-line styling evoking a terminal interface"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Apply dark terminal theme to global styles. Set body background to deep charcoal (#0a0e14 or similar), define CSS custom properties for color palette (electric green for gains, crimson for losses, amber for warnings), and set default font family to clean sans-serif with monospaced fallback for numeric classes. Add utility classes for terminal-style borders and grid lines."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme with dark terminal color palette: define custom colors for charcoal background, electric green (gain), crimson (loss), amber (warning), and muted borders. Configure font families to include a monospaced option for numeric data. Set darkMode strategy if needed."
+        },
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "create",
+          "description": "Create a layout component that wraps all pages with a persistent left-side navigation bar and a main content area. The navigation bar includes links to Dashboard, Watchlist, Portfolio, and AI Assistant pages, styled with terminal aesthetics (dark background, subtle borders). Display the app logo at the top of the nav bar (frontend/public/assets/generated/tradeiq-logo.dim_128x128.png). Use shadcn/ui layout primitives or custom flexbox/grid."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wrap all route components with the Layout component to ensure persistent left navigation. Set Dashboard as the default route (/). Define routes for /watchlist, /portfolio, and /ai-assistant."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Wire generated logo and dashboard hero banner into the UI",
+      "acceptanceCriteria": [
+        "App logo is displayed in the top of the left navigation bar",
+        "Hero banner is shown at the top of the Market Dashboard page",
+        "Both assets are loaded from frontend/public/assets/generated"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "modify",
+          "description": "Add an <img> element at the top of the left navigation bar that loads the app logo from frontend/public/assets/generated/tradeiq-logo.dim_128x128.png. Style it with appropriate sizing and padding to fit the nav header."
+        },
+        {
+          "path": "frontend/src/pages/Dashboard.tsx",
+          "operation": "modify",
+          "description": "Add an <img> element at the top of the Dashboard page that loads the hero banner from frontend/public/assets/generated/dashboard-hero.dim_1200x300.png. Style it as a full-width header image above the briefing and events sections."
+        }
+      ]
+    }
+  ]
+}

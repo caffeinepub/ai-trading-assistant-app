@@ -1,0 +1,246 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-26T07:44:29.751Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 7,
+    "implemented": 6,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Create a backend actor that stores and manages user watchlist assets, portfolio positions (entry price, quantity, stop-loss, take-profit), and daily market briefing data. Expose CRUD operations for watchlist items and portfolio positions, and a method to store/retrieve the latest daily market briefing content.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Build a Market Dashboard page that displays a daily morning briefing summarizing overnight moves across major markets (S&P 500, Crypto, Nasdaq-100), along with a macro events calendar panel showing upcoming events (CPI, earnings reports) and their deviation status.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/Dashboard.tsx",
+          "frontend/src/components/MarketBriefingCard.tsx",
+          "frontend/src/components/MacroEventsPanel.tsx",
+          "frontend/src/utils/mockMarketData.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/Dashboard.tsx",
+          "frontend/src/components/MarketBriefingCard.tsx",
+          "frontend/src/components/MacroEventsPanel.tsx",
+          "frontend/src/utils/mockMarketData.ts"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Build a Watchlist page that displays tracked assets with simulated price data, technical indicators (RSI values), and visual alerts when an asset hits a technical trigger (e.g., RSI > 70 on a 4H timeframe). Include a sentiment badge per asset reflecting positive/neutral/negative news sentiment.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/Watchlist.tsx",
+          "frontend/src/components/WatchlistAssetRow.tsx",
+          "frontend/src/components/AddAssetDialog.tsx",
+          "frontend/src/utils/mockMarketData.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/Watchlist.tsx",
+          "frontend/src/components/WatchlistAssetRow.tsx",
+          "frontend/src/components/AddAssetDialog.tsx",
+          "frontend/src/utils/mockMarketData.ts"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Build a Portfolio Overview page that shows all active positions with their entry price, current simulated price, P&L, total portfolio delta, and a color-coded 'Health Score' (0–100). Highlight positions nearing their stop-loss with a warning indicator. Display a drawdown alert banner if any sector shows a simulated ≥10% drawdown with three suggested Exit or Hedge scenarios.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/Portfolio.tsx",
+          "frontend/src/components/PortfolioSummary.tsx",
+          "frontend/src/components/PositionRow.tsx",
+          "frontend/src/components/DrawdownAlertBanner.tsx",
+          "frontend/src/utils/portfolioCalculations.ts",
+          "frontend/src/utils/mockMarketData.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/Portfolio.tsx",
+          "frontend/src/components/PortfolioSummary.tsx",
+          "frontend/src/components/PositionRow.tsx",
+          "frontend/src/components/DrawdownAlertBanner.tsx",
+          "frontend/src/utils/portfolioCalculations.ts",
+          "frontend/src/utils/mockMarketData.ts"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Build an AI Trading Assistant panel accessible from all pages as a sidebar or dedicated page. The assistant operates in three selectable modes: (1) Daily Strategist — answers questions with morning briefing context and provides risk-managed trade setups with Entry, Stop-Loss, and Take-Profit levels; (2) Risk & Portfolio Guard — analyzes proposed trades against existing portfolio for correlation risk and portfolio impact; (3) Alpha Hunter — presents the top 3 daily high-probability breakout setups (Bull Flag, Double Bottom) with Entry, Stop-Loss, and Take-Profit levels. The assistant uses pre-scripted intelligent responses based on simulated market data (no external LLM API calls). Users type queries and receive formatted responses.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/AIAssistant.tsx",
+          "frontend/src/components/AssistantModeSelector.tsx",
+          "frontend/src/components/AssistantChatHistory.tsx",
+          "frontend/src/components/TradeSetupCard.tsx",
+          "frontend/src/utils/aiAssistantLogic.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/AIAssistant.tsx",
+          "frontend/src/components/AssistantChatHistory.tsx",
+          "frontend/src/components/TradeSetupCard.tsx",
+          "frontend/src/utils/aiAssistantLogic.ts"
+        ]
+      },
+      {
+        "id": "REQ-6",
+        "summary": "Apply a dark-themed, professional financial terminal visual design across the entire app. Use a deep charcoal/near-black background with high-contrast accent colors (e.g., electric green for gains, crimson for losses, amber for warnings). Use a monospaced or semi-monospaced typeface for numeric data and a clean sans-serif for prose. Layout should use a persistent left-side navigation bar and card-based content panels with subtle grid lines evoking a trading terminal aesthetic.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/Layout.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/Layout.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-7",
+        "summary": "Generate a dark trading terminal-style app logo/icon and a dashboard hero banner image.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Layout.tsx",
+          "frontend/src/pages/Dashboard.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/Layout.tsx",
+          "frontend/src/pages/Dashboard.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/blob-storage/Mixin.mo",
+    "backend/blob-storage/Storage.mo",
+    "backend/main.mo",
+    "build-request.json",
+    "build-template/Dockerfile",
+    "build-template/LICENSE",
+    "build-template/README.md",
+    "build-template/deploy.sh",
+    "build-template/icp.yaml",
+    "build-template/package.json",
+    "build-template/pnpm-lock.yaml",
+    "build-template/pnpm-workspace.yaml",
+    "build-template/scripts/prune-unused-images.js",
+    "build-template/scripts/resize-images.js",
+    "build-template/src/backend/canister.yaml",
+    "build-template/src/backend/system-idl/aaaaa-aa.did",
+    "build-template/src/frontend/canister.yaml",
+    "build-template/src/frontend/components.json",
+    "build-template/src/frontend/env.json",
+    "build-template/src/frontend/eslint-rules/no-bigint-in-query-keys.js",
+    "build-template/src/frontend/eslint-rules/require-internet-identity-provider.js",
+    "build-template/src/frontend/eslint.config.js",
+    "build-template/src/frontend/package.json",
+    "build-template/src/frontend/postcss.config.js",
+    "build-template/src/frontend/src/components/ui/accordion.tsx",
+    "build-template/src/frontend/src/components/ui/alert-dialog.tsx",
+    "build-template/src/frontend/src/components/ui/alert.tsx",
+    "build-template/src/frontend/src/components/ui/aspect-ratio.tsx",
+    "build-template/src/frontend/src/components/ui/avatar.tsx",
+    "build-template/src/frontend/src/components/ui/badge.tsx",
+    "build-template/src/frontend/src/components/ui/breadcrumb.tsx",
+    "build-template/src/frontend/src/components/ui/button.tsx",
+    "build-template/src/frontend/src/components/ui/calendar.tsx",
+    "build-template/src/frontend/src/components/ui/card.tsx",
+    "build-template/src/frontend/src/components/ui/carousel.tsx",
+    "build-template/src/frontend/src/components/ui/chart.tsx",
+    "build-template/src/frontend/src/components/ui/checkbox.tsx",
+    "build-template/src/frontend/src/components/ui/collapsible.tsx",
+    "build-template/src/frontend/src/components/ui/command.tsx",
+    "build-template/src/frontend/src/components/ui/context-menu.tsx",
+    "build-template/src/frontend/src/components/ui/dialog.tsx",
+    "build-template/src/frontend/src/components/ui/drawer.tsx",
+    "build-template/src/frontend/src/components/ui/dropdown-menu.tsx",
+    "build-template/src/frontend/src/components/ui/form.tsx",
+    "build-template/src/frontend/src/components/ui/hover-card.tsx",
+    "build-template/src/frontend/src/components/ui/input-otp.tsx",
+    "build-template/src/frontend/src/components/ui/input.tsx",
+    "build-template/src/frontend/src/components/ui/label.tsx",
+    "build-template/src/frontend/src/components/ui/menubar.tsx",
+    "build-template/src/frontend/src/components/ui/navigation-menu.tsx",
+    "build-template/src/frontend/src/components/ui/pagination.tsx",
+    "build-template/src/frontend/src/components/ui/popover.tsx",
+    "build-template/src/frontend/src/components/ui/progress.tsx",
+    "build-template/src/frontend/src/components/ui/radio-group.tsx",
+    "build-template/src/frontend/src/components/ui/resizable.tsx",
+    "build-template/src/frontend/src/components/ui/scroll-area.tsx",
+    "build-template/src/frontend/src/components/ui/select.tsx",
+    "build-template/src/frontend/src/components/ui/separator.tsx",
+    "build-template/src/frontend/src/components/ui/sheet.tsx",
+    "build-template/src/frontend/src/components/ui/sidebar.tsx",
+    "build-template/src/frontend/src/components/ui/skeleton.tsx",
+    "build-template/src/frontend/src/components/ui/slider.tsx",
+    "build-template/src/frontend/src/components/ui/sonner.tsx",
+    "build-template/src/frontend/src/components/ui/switch.tsx",
+    "build-template/src/frontend/src/components/ui/table.tsx",
+    "build-template/src/frontend/src/components/ui/tabs.tsx",
+    "build-template/src/frontend/src/components/ui/textarea.tsx",
+    "build-template/src/frontend/src/components/ui/toggle-group.tsx",
+    "build-template/src/frontend/src/components/ui/toggle.tsx",
+    "build-template/src/frontend/src/components/ui/tooltip.tsx",
+    "build-template/src/frontend/src/hooks/use-mobile.tsx",
+    "build-template/src/frontend/src/lib/utils.ts",
+    "build-template/src/frontend/tsconfig.json",
+    "build-template/src/frontend/vite.config.js",
+    "build-template/tsconfig.json",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/public/assets/generated/dashboard-hero.dim_1200x300.png",
+    "frontend/public/assets/generated/tradeiq-logo.dim_128x128.png",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/AddAssetDialog.tsx",
+    "frontend/src/components/AddPositionDialog.tsx",
+    "frontend/src/components/AssistantChatHistory.tsx",
+    "frontend/src/components/DrawdownAlertBanner.tsx",
+    "frontend/src/components/Layout.tsx",
+    "frontend/src/components/MacroEventsPanel.tsx",
+    "frontend/src/components/MarketBriefingCard.tsx",
+    "frontend/src/components/PortfolioSummary.tsx",
+    "frontend/src/components/PositionRow.tsx",
+    "frontend/src/components/TradeSetupCard.tsx",
+    "frontend/src/components/WatchlistAssetRow.tsx",
+    "frontend/src/config.ts",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/AIAssistant.tsx",
+    "frontend/src/pages/Dashboard.tsx",
+    "frontend/src/pages/Portfolio.tsx",
+    "frontend/src/pages/Watchlist.tsx",
+    "frontend/src/ui-summary.json",
+    "frontend/src/utils/StorageClient.ts",
+    "frontend/src/utils/aiAssistantLogic.ts",
+    "frontend/src/utils/mockMarketData.ts",
+    "frontend/src/utils/portfolioCalculations.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

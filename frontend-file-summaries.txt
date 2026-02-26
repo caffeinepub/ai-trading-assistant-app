@@ -1,0 +1,5 @@
+{
+  "frontend/src/App.tsx": "Main app component that sets up TanStack Router with four routes (Dashboard, Watchlist, Portfolio, AI Assistant) wrapped in the persistent Layout component, and exports the RouterProvider.",
+  "frontend/src/components/MarketBriefingCard.tsx": "Card component displaying the daily market briefing text fetched from the backend (or a default), with formatted sections for headlines and bullet points using ReactElement[] return type instead of JSX.Element[].",
+  "frontend/src/components/AssistantChatHistory.tsx": "Scrollable chat history component for the AI assistant showing user and assistant message bubbles with trade setup cards, risk badges, and formatted text — uses ReactElement[] instead of JSX.Element[] to fix the TS namespace error."
+}

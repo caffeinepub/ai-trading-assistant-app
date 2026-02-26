@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Trading web app with daily market updates and AI assistant featuring three modes: Daily Strategist (morning briefings, technical alerts), Risk & Portfolio Guard (portfolio health, drawdown protection), and Alpha Hunter (breakout scanning, options activity). Includes market dashboard, watchlist, portfolio overview, and risk-managed trade suggestions.",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Dark trading terminal logo mark with a stylized upward candlestick chart and circuit-line details in electric green on a near-black background (tradeiq-logo.dim_128x128.png)\n- Wide dark trading terminal dashboard hero banner featuring candlestick charts, glowing green trend lines, and subtle grid overlay on a deep charcoal background (dashboard-hero.dim_1200x300.png)",
+  "existing_features": [
+    {
+      "id": "feature-build-a-market-dashboard-page-that-displays-a-daily-morning-briefing-summarizing-overnight-moves-across-major-markets-s-p-500-crypto-nasdaq-100-along-with-a-macro-events-calendar-panel-showing-upcoming-events-cpi-earnings-reports-and-their-deviation-status",
+      "title": "Build a Market Dashboard page that displays a daily morning briefing summarizing overnight moves across major markets (S&P 500, Crypto, Nasdaq-100), along with a macro events calendar panel showing upcoming events (CPI, earnings reports) and their deviation status.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-watchlist-page-that-displays-tracked-assets-with-simulated-price-data-technical-indicators-rsi-values-and-visual-alerts-when-an-asset-hits-a-technical-trigger-e-g-rsi-70-on-a-4h-timeframe-include-a-sentiment-badge-per-asset-reflecting-positive-neutral-negative-news-sentiment",
+      "title": "Build a Watchlist page that displays tracked assets with simulated price data, technical indicators (RSI values), and visual alerts when an asset hits a technical trigger (e.g., RSI > 70 on a 4H timeframe). Include a sentiment badge per asset reflecting positive/neutral/negative news sentiment.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-portfolio-overview-page-that-shows-all-active-positions-with-their-entry-price-current-simulated-price-p-l-total-portfolio-delta-and-a-color-coded-health-score-0-100-highlight-positions-nearing-their-stop-loss-with-a-warning-indicator-display-a-drawdown-alert-banner-if-any-sector-shows-a-simulated-10-drawdown-with-three-suggested-exit-or-hedge-scenarios",
+      "title": "Build a Portfolio Overview page that shows all active positions with their entry price, current simulated price, P&L, total portfolio delta, and a color-coded 'Health Score' (0–100). Highlight positions nearing their stop-loss with a warning indicator. Display a drawdown alert banner if any sector shows a simulated ≥10% drawdown with three suggested Exit or Hedge scenarios.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-an-ai-trading-assistant-panel-accessible-from-all-pages-as-a-sidebar-or-dedicated-page-the-assistant-operates-in-three-selectable-modes-1-daily-strategist-answers-questions-with-morning-briefing-context-and-provides-risk-managed-trade-setups-with-entry-stop-loss-and-take-profit-levels-2-risk-portfolio-guard-analyzes-proposed-trades-against-existing-portfolio-for-correlation-risk-and-portfolio-impact-3-alpha-hunter-presents-the-top-3-daily-high-probability-breakout-setups-bull-flag-double-bottom-with-entry-stop-loss-and-take-profit-levels-the-assistant-uses-pre-scripted-intelligent-responses-based-on-simulated-market-data-no-external-llm-api-calls-users-type-queries-and-receive-formatted-responses",
+      "title": "Build an AI Trading Assistant panel accessible from all pages as a sidebar or dedicated page. The assistant operates in three selectable modes: (1) Daily Strategist — answers questions with morning briefing context and provides risk-managed trade setups with Entry, Stop-Loss, and Take-Profit levels; (2) Risk & Portfolio Guard — analyzes proposed trades against existing portfolio for correlation risk and portfolio impact; (3) Alpha Hunter — presents the top 3 daily high-probability breakout setups (Bull Flag, Double Bottom) with Entry, Stop-Loss, and Take-Profit levels. The assistant uses pre-scripted intelligent responses based on simulated market data (no external LLM API calls). Users type queries and receive formatted responses.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-dark-themed-professional-financial-terminal-visual-design-across-the-entire-app-use-a-deep-charcoal-near-black-background-with-high-contrast-accent-colors-e-g-electric-green-for-gains-crimson-for-losses-amber-for-warnings-use-a-monospaced-or-semi-monospaced-typeface-for-numeric-data-and-a-clean-sans-serif-for-prose-layout-should-use-a-persistent-left-side-navigation-bar-and-card-based-content-panels-with-subtle-grid-lines-evoking-a-trading-terminal-aesthetic",
+      "title": "Apply a dark-themed, professional financial terminal visual design across the entire app. Use a deep charcoal/near-black background with high-contrast accent colors (e.g., electric green for gains, crimson for losses, amber for warnings). Use a monospaced or semi-monospaced typeface for numeric data and a clean sans-serif for prose. Layout should use a persistent left-side navigation bar and card-based content panels with subtle grid lines evoking a trading terminal aesthetic.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-a-dark-trading-terminal-style-app-logo-icon-and-a-dashboard-hero-banner-image",
+      "title": "Generate a dark trading terminal-style app logo/icon and a dashboard hero banner image.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Market dashboard with daily briefings and overnight move summaries",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Watchlist with price tracking and technical trigger alerts (RSI, breakouts)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Portfolio overview with health score, delta tracking, and stop-loss monitoring",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "AI trading assistant with three modes: Daily Strategist, Risk & Portfolio Guard, Alpha Hunter",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Sentiment shift monitoring via news and social media correlated with volatility",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Risk-managed trade suggestions with Entry, Stop-Loss, and Take-Profit levels",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Create a backend actor that stores and manages user watchlist assets, portfolio positions (entry price, quantity, stop-loss, take-profit), and daily market briefing data. Expose CRUD operations for watchlist items and portfolio positions, and a method to store/retrieve the latest daily market briefing content.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "AI Trading Assistant App",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

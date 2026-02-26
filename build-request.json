@@ -1,0 +1,168 @@
+{
+  "kind": "build_request",
+  "title": "Trading App with Daily Market Updates and AI Assistant",
+  "projectName": "TradeIQ",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a backend actor that stores and manages user watchlist assets, portfolio positions (entry price, quantity, stop-loss, take-profit), and daily market briefing data. Expose CRUD operations for watchlist items and portfolio positions, and a method to store/retrieve the latest daily market briefing content.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "monitor my watchlist",
+          "Daily Update: Summarize the total portfolio delta and highlight any asset nearing its stop-loss"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can add, update, and remove assets from their watchlist",
+        "Users can add, update, and remove portfolio positions with entry price, quantity, stop-loss, and take-profit fields",
+        "Backend stores and returns the latest daily market briefing text",
+        "Portfolio delta is computable from stored positions"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Build a Market Dashboard page that displays a daily morning briefing summarizing overnight moves across major markets (S&P 500, Crypto, Nasdaq-100), along with a macro events calendar panel showing upcoming events (CPI, earnings reports) and their deviation status.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Every morning at 8:00 AM, provide a Daily Market Briefing summarizing overnight moves",
+          "Earnings Report or Macro event (like CPI) deviates from expectations"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Dashboard shows a daily briefing card with overnight move summaries for at least 3 markets",
+        "A macro events section lists upcoming events with expected vs actual deviation indicators",
+        "The briefing content is loaded from the backend",
+        "Dashboard is the default landing view of the app"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Build a Watchlist page that displays tracked assets with simulated price data, technical indicators (RSI values), and visual alerts when an asset hits a technical trigger (e.g., RSI > 70 on a 4H timeframe). Include a sentiment badge per asset reflecting positive/neutral/negative news sentiment.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "An asset hits a specific Technical Trigger (e.g., RSI > 70 on the 4H chart)",
+          "Sentiment Shift in social media or news that correlates with high volatility"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Watchlist displays asset name, simulated current price, RSI value, and a trend direction indicator",
+        "Assets with RSI > 70 or RSI < 30 are highlighted with a visual alert badge",
+        "Each asset shows a sentiment badge (Bullish / Neutral / Bearish)",
+        "Users can add and remove assets from the watchlist",
+        "Watchlist state is persisted to the backend"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Build a Portfolio Overview page that shows all active positions with their entry price, current simulated price, P&L, total portfolio delta, and a color-coded 'Health Score' (0–100). Highlight positions nearing their stop-loss with a warning indicator. Display a drawdown alert banner if any sector shows a simulated ≥10% drawdown with three suggested Exit or Hedge scenarios.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "update me on the 'Health Score' of my active positions",
+          "highlight any asset nearing its stop-loss",
+          "If a sudden 10% drawdown occurs in any sector I'm invested in, immediately push a notification with three 'Exit' or 'Hedge' scenarios"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Each position row displays: asset name, entry price, current price, P&L percentage, and stop-loss distance",
+        "A portfolio Health Score gauge is shown at the top of the page",
+        "Positions within 5% of their stop-loss are highlighted in amber/red",
+        "A drawdown alert banner appears when simulated sector drawdown exceeds 10%, listing three exit/hedge options",
+        "Total portfolio delta is displayed as a summary metric"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Build an AI Trading Assistant panel accessible from all pages as a sidebar or dedicated page. The assistant operates in three selectable modes: (1) Daily Strategist — answers questions with morning briefing context and provides risk-managed trade setups with Entry, Stop-Loss, and Take-Profit levels; (2) Risk & Portfolio Guard — analyzes proposed trades against existing portfolio for correlation risk and portfolio impact; (3) Alpha Hunter — presents the top 3 daily high-probability breakout setups (Bull Flag, Double Bottom) with Entry, Stop-Loss, and Take-Profit levels. The assistant uses pre-scripted intelligent responses based on simulated market data (no external LLM API calls). Users type queries and receive formatted responses.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Act as my Senior Trading Assistant",
+          "You are my Portfolio Risk Manager",
+          "Act as a Quantitative Research Bot",
+          "All suggestions must include a clear Entry, Stop-Loss, and Take-Profit level"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Assistant panel has three clearly labeled mode tabs: Daily Strategist, Risk & Portfolio Guard, Alpha Hunter",
+        "Users can type a query and receive a formatted response in the active mode",
+        "Daily Strategist responses include a trade setup with Entry, Stop-Loss, and Take-Profit fields",
+        "Risk & Portfolio Guard mode shows a correlation risk summary when a trade is proposed",
+        "Alpha Hunter mode surfaces 3 simulated breakout setups with full trade parameters",
+        "Assistant conversation history is displayed in a scrollable chat-style interface",
+        "Mode switching clears or contextually reframes the conversation"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Apply a dark-themed, professional financial terminal visual design across the entire app. Use a deep charcoal/near-black background with high-contrast accent colors (e.g., electric green for gains, crimson for losses, amber for warnings). Use a monospaced or semi-monospaced typeface for numeric data and a clean sans-serif for prose. Layout should use a persistent left-side navigation bar and card-based content panels with subtle grid lines evoking a trading terminal aesthetic.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All pages share a consistent dark charcoal background",
+        "Gain values are displayed in green, loss values in red/crimson, warnings in amber",
+        "Numeric data uses a monospaced or semi-monospaced font",
+        "A persistent left navigation bar provides access to Dashboard, Watchlist, Portfolio, and AI Assistant sections",
+        "Cards and panels have subtle borders and grid-line styling evoking a terminal interface"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Generate a dark trading terminal-style app logo/icon and a dashboard hero banner image.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ]
+      },
+      "acceptanceCriteria": [
+        "App logo is displayed in the top of the left navigation bar",
+        "Hero banner is shown at the top of the Market Dashboard page",
+        "Both assets are loaded from frontend/public/assets/generated"
+      ]
+    }
+  ],
+  "constraints": [
+    "No external API calls to real market data providers — all price and indicator data must be simulated/mocked within the frontend or backend",
+    "No external LLM or AI service integration — AI assistant responses must use pre-scripted rule-based logic",
+    "All Motoko logic must remain in a single main actor file"
+  ],
+  "nonGoals": [
+    "Real-time WebSocket price feeds",
+    "User authentication or Internet Identity integration",
+    "Actual order execution or brokerage integration",
+    "SMS or email notification delivery",
+    "Mobile app or React Native version",
+    "Backtesting engine with real historical data"
+  ],
+  "imageRequirements": {
+    "required": [
+      "Dark trading terminal logo mark with a stylized upward candlestick chart and circuit-line details in electric green on a near-black background (tradeiq-logo.dim_128x128.png)",
+      "Wide dark trading terminal dashboard hero banner featuring candlestick charts, glowing green trend lines, and subtle grid overlay on a deep charcoal background (dashboard-hero.dim_1200x300.png)"
+    ],
+    "edits": []
+  }
+}
